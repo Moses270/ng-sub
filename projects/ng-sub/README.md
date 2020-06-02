@@ -1,24 +1,62 @@
 # NgSub
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
+NgSub is a simple angular tool provided by [Anchor Solutions](https://www.anchorsolutions.nl) that can be used to manage RxJs subscriptions and prevent memory leakages when working subscribe to data streams in angular. This tool has been well tested with Angular versions from 7.x to 9.1.9
 
-## Code scaffolding
+## Installation
+Install ng-sub via npm by running the following command: 
+> `npm install ng-sub --save`
 
-Run `ng generate component component-name --project ng-sub` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ng-sub`.
-> Note: Don't forget to add `--project ng-sub` or else it will be added to the default project in your `angular.json` file. 
+## Usage
+Register the `NgSubModule` in your app module (or any other module you want to use it).
 
-## Build
+ ```typescript
+import { NgSubModule } from 'ng-sub';
 
-Run `ng build ng-sub` to build the project. The build artifacts will be stored in the `dist/` directory.
+@NgModule({
+  declarations: [],
+  imports: [
+    ...,
+    NgSubModule
+  ],
+  providers: [],
+  bootstrap: []
+})
+export class AppModule {}
+ ``` 
 
-## Publishing
+### Use NgSub service in your components, directives, pipes etc
+```typescript
+import { NgSub } from 'ng-sub';
+import { Observable, of } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-After building your library with `ng build ng-sub`, go to the dist folder `cd dist/ng-sub` and run `npm publish`.
+@Component({
+  selector: 'app-selector',
+  templateUrl: '<h1>Template html</h1>',
+  styleUrls: ['css path here...']
+})
+export class ComponentA implements OnInit, OnDestroy {
+    private sub = new NgSub();
 
-## Running unit tests
+    constructor() {}
 
-Run `ng test ng-sub` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    ngOnInit(): void {
+        const observable: Observable = of(null);
 
-## Further help
+        // use the service with takeUntil when subscribing to any observable
+        observable.pipe(takeUntil(this.sub)).subscribe();
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+        // Or use it to manage multiple subscriptions
+        this.sub.add(sub1, sub2, sub3);
+    }
+
+    ngOnDestroy(): void {
+        this.sub.unsubscribe();
+    }
+}
+ ``` 
+
+### Further Reading
+Have a look at other packages by [Anchor Solutions](https://www.anchorsolutions.nl):
+- [translator-client-module](https://www.npmjs.com/package/translator-client-module)
+- [MatModal](https://www.npmjs.com/package/mat-modal)

@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-import { NgSubComponent } from './ng-sub.component';
-
-
+import { NgSub } from './services/ng-sub.service';
 
 @NgModule({
-  declarations: [NgSubComponent],
-  imports: [
-  ],
-  exports: [NgSubComponent]
+  declarations: [],
+  imports: [],
+  exports: [],
+  providers: [NgSub]
 })
 export class NgSubModule { }
