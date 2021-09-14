@@ -1,27 +1,60 @@
 # NgSub
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+NgSub is a lightweight tool provided by [Anchor Solutions](https://www.anchorsolutions.nl) that can be used to manage RxJs subscriptions and prevent memory leakages when working, subscribe to data streams in JavaScript or any of its framework. Usable both in browser and Node.js environments.
 
-## Development server
+## Installation
+Install ng-sub via npm by running the following command: 
+> `npm install ng-sub --save`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Usage
+Register the `NgSubModule` in your app module (or any other module you want to use it).
 
-## Code scaffolding
+ ```typescript
+import { NgSub } from 'ng-sub';
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+const sub = new NgSub();
 
-## Build
+const observable: Observable = of(null);
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+// use the service with takeUntil when subscribing to any observable
+observable.pipe(takeUntil(sub)).subscribe();
 
-## Running unit tests
+// Or use it to manage multiple subscriptions
+sub.add(sub1, sub2, sub3);
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+// when done, remember to unsubscribe all subscriptions in one place
+sub.unsubscribe();
+```
 
-## Running end-to-end tests
+### Angular example
+```typescript
+import { NgSub } from 'ng-sub';
+import { Observable, of } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+@Component({
+  selector: 'app-selector',
+  templateUrl: '<h1>Template html</h1>',
+  styleUrls: ['css path here...']
+})
+export class ComponentA implements OnInit, OnDestroy {
+    private sub = new NgSub();
 
-## Further help
+    constructor() {}
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+    ngOnInit(): void {
+        const observable: Observable = of(null);
+
+        // use the service with takeUntil when subscribing to any observable
+        observable.pipe(takeUntil(this.sub)).subscribe();
+
+        // Or use it to manage multiple subscriptions
+        this.sub.add(sub1, sub2, sub3);
+    }
+
+    ngOnDestroy(): void {
+        this.sub.unsubscribe();
+    }
+}
+ ``` 
+ 

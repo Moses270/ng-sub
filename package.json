@@ -1,49 +1,38 @@
 {
   "name": "ng-sub",
-  "version": "0.0.0",
+  "description": "Ng-Sub is a lightweight tool used to manage rxjs subscriptions and prevent memory leakage.",
+  "version": "0.2.0",
+  "main": "index.js",
+  "typings": "index.d.ts",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "deploy": "ng build ng-sub --prod && cd dist/ng-sub && npm publish --access=public"
+    "test": "mocha --require ts-node/register test/**/*.ts",
+    "deploy": "tsc && node copy && cd dist && npm publish --access=public"
   },
-  "private": true,
   "dependencies": {
-    "@angular/animations": "~9.1.9",
-    "@angular/common": "~9.1.9",
-    "@angular/compiler": "~9.1.9",
-    "@angular/core": "~9.1.9",
-    "@angular/forms": "~9.1.9",
-    "@angular/platform-browser": "~9.1.9",
-    "@angular/platform-browser-dynamic": "~9.1.9",
-    "@angular/router": "~9.1.9",
-    "rxjs": "~6.5.4",
-    "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "rxjs": "^7.3.0"
   },
+  "author": {
+    "name": "Moses Godson",
+    "email": "mosesgodson27@gmail.com",
+    "url": "https://embyconcept.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moses270/ng-sub/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moses270/ng-sub"
+  },
+  "homepage": "https://anchorsolutions.nl",
+  "keywords": [
+    "Reactive programming",
+    "Unsubscribe",
+    "RxJs",
+    "Subscription"
+  ],
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.901.7",
-    "@angular-devkit/build-ng-packagr": "~0.901.7",
-    "@angular/cli": "~9.1.7",
-    "@angular/compiler-cli": "~9.1.9",
-    "@types/node": "^12.11.1",
-    "@types/jasmine": "~3.5.0",
-    "@types/jasminewd2": "~2.0.3",
-    "codelyzer": "^5.1.2",
-    "jasmine-core": "~3.5.0",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~5.0.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~2.1.0",
-    "karma-jasmine": "~3.0.1",
-    "karma-jasmine-html-reporter": "^1.4.2",
-    "ng-packagr": "^9.0.0",
-    "protractor": "~7.0.0",
-    "ts-node": "~8.3.0",
-    "tslint": "~6.1.0",
-    "typescript": "~3.8.3"
+    "fs-extra": "^10.0.0",
+    "tslib": "^2.0.0"
   }
 }
