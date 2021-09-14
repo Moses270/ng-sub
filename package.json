@@ -1,0 +1,38 @@
+{
+  "name": "ng-sub",
+  "description": "Ng-Sub is a lightweight tool used to manage rxjs subscriptions and prevent memory leakage.",
+  "version": "0.2.0",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "scripts": {
+    "test": "mocha --require ts-node/register test/**/*.ts",
+    "deploy": "tsc && node copy && cd dist && npm publish --access=public"
+  },
+  "dependencies": {
+    "rxjs": "^7.3.0"
+  },
+  "author": {
+    "name": "Moses Godson",
+    "email": "mosesgodson27@gmail.com",
+    "url": "https://embyconcept.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moses270/ng-sub/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moses270/ng-sub"
+  },
+  "homepage": "https://anchorsolutions.nl",
+  "keywords": [
+    "Reactive programming",
+    "Unsubscribe",
+    "RxJs",
+    "Subscription"
+  ],
+  "devDependencies": {
+    "fs-extra": "^10.0.0",
+    "tslib": "^2.0.0"
+  }
+}
