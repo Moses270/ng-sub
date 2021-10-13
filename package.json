@@ -1,12 +1,13 @@
 {
   "name": "ng-sub",
   "description": "Ng-Sub is a lightweight tool used to manage rxjs subscriptions and prevent memory leakage.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
     "test": "mocha --require ts-node/register test/**/*.ts",
-    "deploy": "tsc && node copy && cd dist && npm publish --access=public"
+    "deploy": "tsc && node copy && cd dist && npm publish --access=public",
+    "unpublish": "npm unpublish ng-sub@0.1.8"
   },
   "dependencies": {
     "rxjs": "^7.3.0"
