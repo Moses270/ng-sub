@@ -12,10 +12,12 @@ export class NgSub extends Subject<any> {
   }
 
   public unsubscribe(): void {
+    this.next();
     this.d$.complete();
     this.d$.unsubscribe();
 
     // for the subject extended super class
+    super.next();
     super.complete();
     super.unsubscribe();
 

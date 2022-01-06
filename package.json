@@ -1,7 +1,7 @@
 {
   "name": "ng-sub",
   "description": "Ng-Sub is a lightweight tool used to manage rxjs subscriptions and prevent memory leakage.",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "main": "index.js",
   "typings": "index.d.ts",
   "scripts": {
@@ -10,7 +10,7 @@
     "unpublish": "npm unpublish ng-sub@0.1.8"
   },
   "dependencies": {
-    "rxjs": "^7.3.0"
+    "rxjs": "^6.6.7"
   },
   "author": {
     "name": "Moses Godson",
